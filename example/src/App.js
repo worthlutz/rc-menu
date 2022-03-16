@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { ExampleComponent } from '@wal3/rc-menu'
 import '@wal3/rc-menu/dist/index.css'
 
