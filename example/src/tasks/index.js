@@ -1,5 +1,5 @@
 import loadable from '@loadable/component'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { MenuIcon } from './icons'
 

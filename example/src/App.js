@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { Menu } from '@wal3/rc-menu'
 import { tasks, Task, TaskContainer } from './tasks'
