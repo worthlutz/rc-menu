@@ -33,7 +33,7 @@ export default function Menu({ config, open, onClick, onClose }) {
                 />
               )
 
-            case '"MenuLinkItem':
+            case 'MenuLinkItem':
               return <MenuLinkItem key={i.toString() + text} item={item} />
 
             case 'SubMenu':
