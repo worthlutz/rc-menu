@@ -1,5 +1,3 @@
-import styles from './styles.module.css'
+import Menu from './menu/Menu'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export { Menu }
