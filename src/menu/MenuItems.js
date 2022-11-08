@@ -26,8 +26,16 @@ const Link = styled.a`
 `
 
 // MenuLinkItem component  -----------------------------------
-export function MenuItem({ item, isBold, Icon, onClick }) {
-  const clickHandler = () => onClick(item)
+export function MenuItem({ item, isBold, Icon, path, onClick }) {
+  const clickHandler = (e) => {
+    const clicked = {
+      key: item.text,
+      item: item,
+      keyPath: path,
+      domEvent: e,
+    }
+    onClick(clicked);
+  }
 
   return (
     <Item id='item' key={item.text} onClick={clickHandler}>

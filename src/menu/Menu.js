@@ -10,62 +10,60 @@ export default function Menu({ config, open, onClick, onClose }) {
   const [title, setTitle] = useState('Loading')
   const [menuGroups, setMenuGroups] = useState([])
 
-  const getItemComponents = useCallback(
-    (items) => {
-      const itemClickHandler = (item) => {
-        onClick(item)
-        onClose()
-      }
+  const getItemComponents = useCallback( (items, path) => {
 
-      const menuItems = items.flatMap((item, i) => {
-        const { type, text } = item
-        // eslint-disable-next-line no-prototype-builtins
-        if (item.hasOwnProperty('type')) {
-          let submenuItems = []
-          switch (type) {
-            case 'MenuItem':
-              return (
-                <MenuItem
-                  key={i.toString() + text}
-                  item={item}
-                  onClick={itemClickHandler}
-                />
-              )
+    const itemClickHandler = (clicked) => {
+      onClick(clicked)
+      onClose()
+    }
 
-            case 'MenuLinkItem':
-              return <MenuLinkItem key={i.toString() + text} item={item} />
+    const menuItems = items.flatMap((item, i) => {
+      const { type, text } = item;
+      // eslint-disable-next-line no-prototype-builtins
+      if (item.hasOwnProperty('type')) {
+        switch (type) {
+          case 'MenuItem':
+            return (
+              <MenuItem
+                key={i.toString() + text}
+                item={item}
+                path={path}
+                onClick={itemClickHandler}
+              />
+            )
 
-            case 'SubMenu':
-              if (item.items) {
-                submenuItems = getItemComponents(item.items)
-              }
-              return (
-                <SubMenu key={i.toString() + text} item={item}>
-                  {submenuItems}
-                </SubMenu>
-              )
+          case 'MenuLinkItem':
+            return <MenuLinkItem key={i.toString() + text} item={item} />
 
-            default:
-              console.error(
-                `undefined MenuItem type(${type} in config - text= ${text}`,
-              )
-          }
-        } else {
-          console.error(`missing type in menuItem config - text= ${text}`)
+          case 'SubMenu':
+            let submenuItems = [];
+            if (item.items) {
+              submenuItems = getItemComponents(item.items, [...path, item.text]);
+            }
+            return (
+              <SubMenu key={i.toString() + text} item={item}>
+                {submenuItems}
+              </SubMenu>
+            )
+
+          default:
+            console.error(`undefined MenuItem type(${type} in config - text= ${text}`);
         }
-        return null
-      })
-      return menuItems
-    },
-    [onClick, onClose],
-  )
+      } else {
+        console.error(`missing type in menuItem config - text= ${text}`);
+      }
+      return null;
+    })
+    return menuItems;
+
+  }, [onClick, onClose])
 
   useEffect(() => {
     const allGroups = config.groups.map((group, i) => {
       let menuItems = []
       // eslint-disable-next-line no-prototype-builtins
       if (group.hasOwnProperty('items')) {
-        menuItems = getItemComponents(group.items)
+        menuItems = getItemComponents(group.items, [])
       }
       return (
         <MenuGroup key={i.toString() + group.text} group={group}>
@@ -74,7 +72,7 @@ export default function Menu({ config, open, onClick, onClose }) {
       )
     })
 
-    setTitle(config.title || 'XX no title in config')
+    setTitle(config.title || 'no title in config')
     setMenuGroups(allGroups)
   }, [config, getItemComponents])
 

@@ -50,9 +50,9 @@ const menuoptions = {
       items: [
         {
           type: "MenuItem",
-          text: "Login 2",
+          text: "Item 2",
           options: {
-            tag: "login2",
+            tag: "item-2",
           }
         },
         {
@@ -91,9 +91,9 @@ const menuoptions = {
         },
         {
           type: "MenuItem",
-          text: "Login 4",
+          text: "Item 3",
           options: {
-            tag: "login4",
+            tag: "item3",
           }
         },
       ]
@@ -138,16 +138,16 @@ const menuoptions = {
       items: [
         {
           type: "MenuItem",
-          text: "Login 4",
+          text: "Login 2",
           options: {
-            tag: "login4",
+            tag: "login2",
           }
         },
         {
           type: "MenuItem",
           text: "Login 3",
           options: {
-            tag: "login4",
+            tag: "login3",
           }
         },
         {
