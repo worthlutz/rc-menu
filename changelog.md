@@ -1,5 +1,9 @@
 ### changelog for rc-menu
 
+#### v0.4.0
+* upgrade to react v18
+* fix menu to remember which groups are open/closed
+
 #### v0.3.0
 
 * BREAKING CHANGE: what is returned from clicking a MenuItem is different

@@ -1,7 +1,6 @@
 {
   "parser": "@babel/eslint-parser",
   "extends": [
-    "@imaginary-cloud/react"
   ],
   "env": {
     "node": true
