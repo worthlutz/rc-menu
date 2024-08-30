@@ -27,7 +27,10 @@ export default function MenuGroup({ group, children }) {
     text && isCloseable ? !initiallyClosed : true,
   )
 
-  const toggleOpen = () => setOpen(!open)
+  const toggleOpen = () => {
+    console.log('open = ' + open);
+    setOpen(!open);
+  }
 
   const header = text ? (
     <MenuItem

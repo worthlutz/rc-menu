@@ -27,13 +27,13 @@ function App() {
   const [ currentTask, setCurrentTask ] = useState(DefaultTask);
   const [ taskTitle, setTaskTitle ] = useState(defaultTitle)
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  }
 
   const menuClickHandler = (clicked) => {
     // item is the individual menu item config from menuconfig
     // use data from item to determine what happens
-
-    console.log(clicked);
 
     setTaskTitle(clicked.item.text)
     setCurrentTask(Task({tag: clicked.item.options.tag}));

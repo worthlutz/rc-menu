@@ -76,8 +76,16 @@ export default function Menu({ config, open, onClick, onClose }) {
     setMenuGroups(allGroups)
   }, [config, getItemComponents])
 
+
   return (
-    <Drawer open={open} onClose={onClose}>
+    <Drawer
+      open={open}
+      onClose={onClose}
+      variant='temporary'
+      ModalProps={{
+        keepMounted: true,
+      }}
+    >
       <MenuTitle title={title} onClose={onClose} />
       {menuGroups}
     </Drawer>

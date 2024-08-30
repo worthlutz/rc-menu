@@ -34,6 +34,10 @@ export function MenuItem({ item, isBold, Icon, path, onClick }) {
       keyPath: path,
       domEvent: e,
     }
+
+    console.log('clicked MenuItem.clickhandler');
+    console.log(clicked);
+
     onClick(clicked);
   }
 
